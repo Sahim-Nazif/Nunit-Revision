@@ -31,5 +31,19 @@ namespace NunitRevision
             }
             inventory += collection;
         }
+        public void SoldOrRent(int collection)
+        {
+            if (collection > inventory)
+            {
+                throw new ArgumentOutOfRangeException(nameof(collection));
+            }
+            if (collection < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(collection));
+            }
+
+            inventory -= collection;
+
+        }
     }
 }
