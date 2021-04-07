@@ -23,5 +23,13 @@ namespace NunitRevision
         {
             get { return inventory; }
         }
+        public void Add(int collection)
+        {
+            if (collection < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(collection));
+            }
+            inventory += collection;
+        }
     }
 }
