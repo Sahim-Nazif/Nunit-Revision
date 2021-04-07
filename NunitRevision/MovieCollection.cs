@@ -45,5 +45,15 @@ namespace NunitRevision
             inventory -= collection;
 
         }
+        public void TransferToOtherStores(MovieCollection otherStore, int collection)
+        {
+            if (otherStore is null)
+            {
+                throw new ArgumentNullException(nameof(otherStore));
+            }
+
+            SoldOrRent(collection);
+            otherStore.Add(collection);
+        }
     }
 }
