@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using NunitRevision;
+using System;
 
 namespace MovieUnitTest
 {
@@ -29,6 +30,16 @@ namespace MovieUnitTest
             movie.SoldOrRent(300);
             //Assert
             Assert.AreEqual(200, movie.Inventory);
+        }
+
+        [Test]
+        public void Add_Negative_Number_Throws()
+        {
+
+            var movie = new MovieCollection(500);
+            Assert.Throws<ArgumentOutOfRangeException>(() => movie.Add(-100));
+
+
         }
 
     }
