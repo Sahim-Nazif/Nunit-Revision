@@ -66,6 +66,13 @@ namespace MovieUnitTest
 
 
         }
+        [Test]
+        public void Transfer_ToOtherStores_Throws_IfNull()
+        {
+            var movie = new MovieCollection(500);
+
+            Assert.Throws<ArgumentNullException>(() => movie.TransferToOtherStores(null, 600));
+        }
 
     }
 }
