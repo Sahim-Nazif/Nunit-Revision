@@ -6,12 +6,19 @@ namespace MovieUnitTest
 {
     public class Tests
     {
+        private MovieCollection movie;
+
+        [SetUp]
+        public void Setup()
+        {
+
+            movie = new MovieCollection(500);
+        }
 
         [Test]
         public void Adding_Collection_Updates_Inventory()
         {
-            //Arrange
-            var movie = new MovieCollection(500);
+           
 
             //Act
             movie.Add(350);
@@ -23,9 +30,6 @@ namespace MovieUnitTest
         [Test]
         public void Removing_Collection_updates_Inventory()
         {
-            //Arrange
-            var movie = new MovieCollection(500);
-
             //Act
             movie.SoldOrRent(300);
             //Assert
@@ -35,8 +39,6 @@ namespace MovieUnitTest
         public void Transfer_Movies_To_OtherStore_UpdatesBothAccount()
         {
 
-            //Arrange
-            var movie = new MovieCollection(500);
             var otherStore = new MovieCollection();
             //Act
             movie.TransferToOtherStores(otherStore,200);
@@ -48,30 +50,25 @@ namespace MovieUnitTest
 
         }
         [Test]
-        public void SellingRent_More_Than_Inventory_Throws()
+        public void SellingOrRenting_More_Than_Inventory_Throws()
         {
-            //Arrange
-            var movieInventory = new MovieCollection(500);
             //Act & Assert
-            Assert.Throws<ArgumentOutOfRangeException>(() => movieInventory.SoldOrRent(600));
+            Assert.Throws<ArgumentOutOfRangeException>(() => movie.SoldOrRent(600));
 
         }
         [Test]
         public void Add_Negative_Number_Throws()
         {
-            //Arrange
-            var movie = new MovieCollection(500);
+            
             //Act + Assert
             Assert.Throws<ArgumentOutOfRangeException>(() => movie.Add(-100));
 
 
         }
         [Test]
-        public void Transfer_ToOtherStores_Throws_IfNull()
+        public void Transfer_ToOtherStores_IfStoreIsNull_Throws()
         {
-            var movie = new MovieCollection(500);
-
-            Assert.Throws<ArgumentNullException>(() => movie.TransferToOtherStores(null, 600));
+           Assert.Throws<ArgumentNullException>(() => movie.TransferToOtherStores(null, 600));
         }
 
     }
